@@ -9,7 +9,10 @@ import com.springboot.advanced_jpa.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -48,6 +51,8 @@ public class ProductServiceImpl implements ProductService {
         product.setName(productDto.getName());
         product.setPrice(productDto.getPrice());
         product.setStock(productDto.getStock());
+        product.setCreatedAt(LocalDateTime.now());
+        product.setUpdatedAt(LocalDateTime.now());
 
         Product savedProduct = productRepository.save(product);
         LOGGER.info("[saveProduct] savedProduct : {}", savedProduct);
