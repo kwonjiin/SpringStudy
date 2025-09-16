@@ -43,7 +43,18 @@ public class ProductRepositoryTest {
         Product savedProduct3 = productRepository.save(product3);
 
 
-        productRepository.findByName("펜", Sort.by(Order.asc("price")));
-        productRepository.findByName("펜", Sort.by(Order.asc("price"), Order.desc("stock")));
+//        쿼리 메서드에 Sort 객체 전달
+//        productRepository.findByName("펜", Sort.by(Order.asc("price")));
+//        productRepository.findByName("펜", Sort.by(Order.asc("price"), Order.desc("stock")));
+
+        System.out.println(productRepository.findByName("펜", getSort()));
+    }
+
+//    쿼리 메서드에서 정렬 부분을 분리
+    private Sort getSort() {
+        return Sort.by(
+                Order.asc("price"),
+                Order.desc("Stock")
+        );
     }
 }
