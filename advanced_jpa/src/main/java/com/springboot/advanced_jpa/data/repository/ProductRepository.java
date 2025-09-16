@@ -1,6 +1,8 @@
 package com.springboot.advanced_jpa.data.repository;
 
 import com.springboot.advanced_jpa.data.entity.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -87,4 +89,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     // 매개변수를 활용한 쿼리 정렬
     List<Product> findByName(String name, Sort sort);
+
+    // 페이징처리를 위한 쿼리 메서드 예시
+    Page<Product> findByName(String name, Pageable pageable);
 }
